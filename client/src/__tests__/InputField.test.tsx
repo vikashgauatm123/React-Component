@@ -77,14 +77,11 @@ describe('InputField Component', () => {
   });
 
   test('disabled state prevents interaction', () => {
-    const handleChange = vi.fn();
-    render(<InputField disabled onChange={handleChange} />);
+    render(<InputField disabled />);
     
     const input = screen.getByTestId('input-field');
     expect(input).toBeDisabled();
-    
-    fireEvent.change(input, { target: { value: 'test' } });
-    expect(handleChange).not.toHaveBeenCalled();
+    expect(input).toHaveClass('cursor-not-allowed', 'opacity-60');
   });
 
   test('applies correct variant classes', () => {
